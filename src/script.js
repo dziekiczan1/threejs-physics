@@ -54,6 +54,8 @@ const environmentMapTexture = cubeTextureLoader.load([
  */
 // World
 const world = new CANNON.World();
+world.broadphase = new CANNON.SAPBroadphase(world);
+world.allowSleep = true;
 world.gravity.set(0, -9.82, 0);
 
 // Materials
@@ -246,7 +248,6 @@ const createBox = (width, height, depth, position) => {
     // Save in objects to update
     objectsToUpdate.push({mesh, body});
 }
-createBox(1, 1, 1, {x: 0, y: 3, z: 0});
 
 /**
  * Animate
@@ -265,6 +266,7 @@ const tick = () => {
 
     for (const object of objectsToUpdate) {
         object.mesh.position.copy(object.body.position);
+        object.mesh.quaternion.copy(object.body.quaternion);
     }
 
     // sphere.position.copy(sphereBody.position);
