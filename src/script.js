@@ -1,7 +1,7 @@
-import * as THREE from 'three'
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
-import GUI from 'lil-gui'
-import CANNON from 'cannon'
+import * as THREE from 'three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+import GUI from 'lil-gui';
+import * as CANNON from 'cannon-es';
 
 /**
  * Debug
@@ -31,6 +31,7 @@ debugObject.reset = () => {
         //Remove mesh
         scene.remove(object.mesh);
     }
+    objectsToUpdate.splice(0, objectsToUpdate.length)
 };
 gui.add(debugObject, 'createSphere');
 gui.add(debugObject, 'createBox');
